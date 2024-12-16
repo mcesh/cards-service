@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  cards-db:
+    image: postgres:14-bullseye
+    container_name: cards-postgres-db
+    ports:
+      - "5101:5432"
+    environment:
+      POSTGRES_DB: cardsdb
+      POSTGRES_USER: siya7
+      POSTGRES_PASSWORD: Welcome123
+    volumes:
+      - ./pgdata:/var/lib/postgresql/cards-data
+    networks:
+      - cards-db-network
+
+networks:
+  cards-db-network:
+    driver: bridge
