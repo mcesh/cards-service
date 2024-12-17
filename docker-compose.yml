@@ -3,18 +3,29 @@ version: '3.8'
 services:
   cards-db:
     image: postgres:14-bullseye
-    container_name: cards-postgres-db
+    container_name: cards-db
     ports:
-      - "5101:5432"
+      - "5438:5432"
     environment:
       POSTGRES_DB: cardsdb
       POSTGRES_USER: siya7
-      POSTGRES_PASSWORD: Welcome123
+      POSTGRES_PASSWORD: Welcome421
     volumes:
-      - ./pgdata:/var/lib/postgresql/cards-data
-    networks:
-      - cards-db-network
+      - ./pgdata:/var/lib/postgresql/cards-data-new
 
-networks:
-  cards-db-network:
-    driver: bridge
+  cards-service:
+    image: siya7/cards:1
+    build:
+      context: .
+    container_name: cards-service
+    ports:
+      - "8086:8080" # Map container port 8080 to host port 8086
+    environment:
+      - POSTGRES_USER=siya7
+      - POSTGRES_PASSWORD=Welcome421
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://cards-db:5432/cardsdb
+      - SPRING_DATASOURCE_USERNAME=siya7
+      - SPRING_DATASOURCE_PASSWORD=Welcome421
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - cards-db
