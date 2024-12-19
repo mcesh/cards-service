@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: siya7
       POSTGRES_PASSWORD: Welcome421
     volumes:
-      - ./pgdata:/var/lib/postgresql/cards-data-new
+      - /path/on/host:/var/lib/postgresql/cards-data-new
 
   cards-service:
     image: siya7/cards:1
