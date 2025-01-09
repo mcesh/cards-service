@@ -4,17 +4,19 @@ logging:
     #org.hibernate.type: TRACE
     #org.hibernate.SQL: DEBUG
 
-#server:
- # port: 8083
+server:
+  port: 8083
 
 spring:
   application:
-    name: cards-service
+    name: cards
+  profiles:
+    active: "prod"
 
   datasource:
-    url: jdbc:postgresql://localhost:5101/cardsdb
+    url: jdbc:postgresql://localhost:5438/cardsdb
     username: siya7
-    password: Welcome123
+    password: Welcome421
 
   jpa:
     hibernate:
@@ -26,3 +28,18 @@ spring:
         format_sql: false
         show_sql: false
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  config:
+    import: "optional:configserver:http://localhost:8071/"
+
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
