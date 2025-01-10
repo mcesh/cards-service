@@ -5,7 +5,7 @@ logging:
     #org.hibernate.SQL: DEBUG
 
 server:
-  port: 8083
+  port: 8086
 
 spring:
   application:

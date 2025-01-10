@@ -14,12 +14,12 @@ services:
       - /path/on/host:/var/lib/postgresql/cards-data-new
 
   cards-service:
-    image: siya7/cards:1
+    image: siya7/cards:2
     build:
       context: .
     container_name: cards-service
     ports:
-      - "8086:8080" # Map container port 8080 to host port 8086
+      - "8083:8083" # Map container port 8080 to host port 8083
     environment:
       - POSTGRES_USER=siya7
       - POSTGRES_PASSWORD=Welcome421
