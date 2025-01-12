@@ -1,9 +1,3 @@
-logging:
-  level:
-    com.daimler.dmd: DEBUG
-    #org.hibernate.type: TRACE
-    #org.hibernate.SQL: DEBUG
-
 server:
   port: 8086
 
@@ -70,3 +64,9 @@ info:
     name: "cards"
     description: "Eazy Bank Microservices"
     version: "1.0.0"
+
+logging:
+  level:
+    com:
+      eazybytes:
+        cards: DEBUG
